@@ -1,7 +1,5 @@
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Random;
 
 class Start {  
@@ -13,159 +11,109 @@ class Start {
         // Variable
         int [] numbers;
         int [] answer;
-        // int [] copyNumber;
-        // int comp = 0;
-        // ArrayList<Integer> numList;
-        // ArrayList<Integer> copyNumList;
-
-        System.out.println("\nBS -> Bubble Sort,  EBS ->Enhanced  Bubble Sort");
-        System.out.println("------------------------------------------------------------------------------");
-        System.out.println("| Data type  |   array   BS  | ArrayList  BS |   array  EBS  | ArrayList EBS |");
-        System.out.println("|------------+---------------+---------------+---------------+---------------|");
+    
+        firstLine();
         numbers = getRandomArray();
-        answer = executeAlgorithms(numbers, arrayToArrayList(numbers));
-        System.out.println(Arrays.toString(answer));
-        System.out.println(getDisplayBigArray(numbers));
-        System.out.println(getDisplayBigArrayList(arrayToArrayList(numbers)));
+        answer = executeAlgorithms(numbers);
+        addLine("Random Dist.", answer);
 
+        numbers = getSortedArray();
+        answer = executeAlgorithms(numbers);
+        addLine("   Sorted   ", answer);
 
-        // // Random distribution
-        // numbers = getRandomArray();
-        // System.out.println("\n  ---   Random distribution   ---");
-        // System.out.println("Original array: " + getDisplayBigArray(numbers));  
-
-        // copyNumber = Arrays.copyOf(numbers, numbers.length);
-        // comp = bubbleSort(copyNumber);
-        // System.out.println("\nAlghorytm \"Bubble Sort\" , Number of comparisons: " + comp);
-        // System.out.println("Sorted  array:  " + getDisplayBigArray(copyNumber));  
-
-        // copyNumber = Arrays.copyOf(numbers, numbers.length);
-        // comp = enhancedBubbleSort(copyNumber);
-        // System.out.println("\nAlghorytm \"Enhanced Bubble Sort\" , Number of comparisons: " + comp);
-        // System.out.println("Sorted  array:  " + getDisplayBigArray(copyNumber));  
-
-
-        // // Sorted numbers
-        // numbers = getSortedArray();
-        // System.out.println("\n  ---  Sorted numbers   ---");
-        // System.out.println("Original array: " + getDisplayBigArray(numbers));  
-
-        // copyNumber = Arrays.copyOf(numbers, numbers.length);
-        // comp = bubbleSort(copyNumber);
-        // System.out.println("\nAlghorytm \"Bubble Sort\" , Number of comparisons: " + comp);
-        // System.out.println("Sorted  array:  " + getDisplayBigArray(copyNumber));  
-
-        // copyNumber = Arrays.copyOf(numbers, numbers.length);
-        // comp = enhancedBubbleSort(copyNumber);
-        // System.out.println("\nAlghorytm \"Enhanced Bubble Sort\" , Number of comparisons: " + comp);
-        // System.out.println("Sorted  array:  " + getDisplayBigArray(copyNumber));  
-
-
-        // // Invert numbers
-        // numbers = getInvertArray();
-        // System.out.println("\n  ---  Invert numbers   ---");
-        // System.out.println("Original array: " + getDisplayBigArray(numbers));  
-
-        // copyNumber = Arrays.copyOf(numbers, numbers.length);
-        // comp = bubbleSort(copyNumber);
-        // System.out.println("\nAlghorytm \"Bubble Sort\" , Number of comparisons: " + comp);
-        // System.out.println("Sorted  array:  " + getDisplayBigArray(copyNumber));  
-
-        // copyNumber = Arrays.copyOf(numbers, numbers.length);
-        // comp = enhancedBubbleSort(copyNumber);
-        // System.out.println("\nAlghorytm \"Enhanced Bubble Sort\" , Number of comparisons: " + comp);
-        // System.out.println("Sorted  array:  " + getDisplayBigArray(copyNumber));  
-
-
-        // System.out.println("\n  ------  ArrayList   ------");
-
-        // // Random distribution
-        // numList = getRandomArrayList();
-        // System.out.println("\n  ---   Random distribution   ---");
-        // System.out.println("Original list: " + getDisplayBigArrayList(numList));  
-
-        // copyNumList = new ArrayList<>(numList);
-        // comp = bubbleSortList(copyNumList);
-        // System.out.println("\nAlghorytm \"Bubble Sort\" , Number of comparisons: " + comp);
-        // System.out.println("Sorted   list:  " + getDisplayBigArrayList(copyNumList));  
-
-        // copyNumList = new ArrayList<>(numList);
-        // comp = enhancedBubbleSortList(copyNumList);
-        // System.out.println("\nAlghorytm \"Enhanced Bubble Sort\" , Number of comparisons: " + comp);
-        // System.out.println("Sorted   list:  " + getDisplayBigArrayList(copyNumList));  
-
-        // // Sorted numbers
-        // numList = getSortedList();
-        // System.out.println("\n  ---  Sorted numbers   ---");
-        // System.out.println("Original list: " + getDisplayBigArrayList(numList));  
-
-        // copyNumList = new ArrayList<>(numList);
-        // comp = bubbleSortList(copyNumList);
-        // System.out.println("\nAlghorytm \"Bubble Sort\" , Number of comparisons: " + comp);
-        // System.out.println("Sorted   list:  " + getDisplayBigArrayList(copyNumList));  
-
-        // copyNumList = new ArrayList<>(numList);
-        // comp = enhancedBubbleSortList(copyNumList);
-        // System.out.println("\nAlghorytm \"Enhanced Bubble Sort\" , Number of comparisons: " + comp);
-        // System.out.println("Sorted   list:  " + getDisplayBigArrayList(copyNumList));  
-
-
-        // // Invert numbers
-        // numList = getInvertList();
-        // System.out.println("\n  ---  Invert numbers   ---");
-        // System.out.println("Original list: " + getDisplayBigArrayList(numList));  
-
-        // copyNumList = new ArrayList<>(numList);
-        // comp = bubbleSortList(copyNumList);
-        // System.out.println("\nAlghorytm \"Bubble Sort\" , Number of comparisons: " + comp);
-        // System.out.println("Sorted   list:  " + getDisplayBigArrayList(copyNumList));  
-
-        // copyNumList = new ArrayList<>(numList);
-        // comp = enhancedBubbleSortList(copyNumList);
-        // System.out.println("\nAlghorytm \"Enhanced Bubble Sort\" , Number of comparisons: " + comp);
-        // System.out.println("Sorted   list:  " + getDisplayBigArrayList(copyNumList));  
-
+        numbers = getInvertArray();
+        answer = executeAlgorithms(numbers);
+        addLine("   Invert   ", answer);
 
     }  
 
-    public static int[] executeAlgorithms(int[] arr, ArrayList<Integer> list) {
+    private static void firstLine() {
+        System.out.println("\nBS -> Bubble Sort,   EBS -> Enhanced Bubble Sort");
+        System.out.println("c -> comparisons,   s -> swaps,   t -> Elapsed Time\n");
+        System.out.println("------------------------------------------------------------------------------");
+        System.out.println("| Data type  |   array   BS  | ArrayList  BS |   array  EBS  | ArrayList EBS |");
+        System.out.println("|------------+---------------+---------------+---------------+---------------|");
+    }
+
+    private static void addLine(String type, int[] answer) {
+        String s;
+        // comparisons
+        s = "|            |";
+        s += " c= " + formatNumber(answer[0]) + " |";
+        s += " c= " + formatNumber(answer[3]) + " |";
+        s += " c= " + formatNumber(answer[6]) + " |";
+        s += " c= " + formatNumber(answer[9]) + " |";
+        System.out.println(s);
+        // swaps
+        s = "|" + type + "|";
+        s += " s= " + formatNumber(answer[1]) + " |";
+        s += " s= " + formatNumber(answer[4]) + " |";
+        s += " s= " + formatNumber(answer[7]) + " |";
+        s += " s= " + formatNumber(answer[10]) + " |";
+        System.out.println(s);
+        // swaps
+        s = "|            |";
+        s += " t= " + formatNumber(answer[2]) + " |";
+        s += " t= " + formatNumber(answer[5]) + " |";
+        s += " t= " + formatNumber(answer[8]) + " |";
+        s += " t= " + formatNumber(answer[11]) + " |";
+        System.out.println(s);
+        System.out.println("|------------+---------------+---------------+---------------+---------------|");
+    }
+
+    private static String formatNumber(int num) {
+        String s = String.format("%8d", num);
+        s = s.substring(0, 2) + " " + s.substring(2, 5) + " " + s.substring(5);
+        return s;
+    }
+
+    public static int[] executeAlgorithms(int[] arrIn) {
 
         int[] answer = new int[12];
         long start, stop;
         int[] result;
+        int[] arr;
+        ArrayList<Integer> list;
 
         // Bubble Sort array
+        arr = Arrays.copyOf(arrIn, arrIn.length);
         start = System.currentTimeMillis();
         result = bubbleSortParam(arr);
         stop = System.currentTimeMillis();
         answer[0] = result[0];
         answer[1] = result[1];
         answer[2] = (int)(stop - start);
-        // Bubble Sort
-        // Array (0-> comparisons, 1-> swap, 2-> time)
-        // ArrayList (3-> comparisons, 4-> swap, 5-> time)
-        // Enhanced Bubble Sort
-        // Array (6-> comparisons, 7-> swap, 8-> time)
-        // ArrayList (9-> comparisons, 10-> swap, 11-> time)
+
+        // Bubble Sort ArrayList
+        list = arrayToArrayList(arrIn);
+        start = System.currentTimeMillis();
+        result = bubbleSortList(list);
+        stop = System.currentTimeMillis();
+        answer[3] = result[0];
+        answer[4] = result[1];
+        answer[5] = (int)(stop - start);
+        
+
+        // Enhanced Bubble Sort array
+        arr = Arrays.copyOf(arrIn, arrIn.length);
+        start = System.currentTimeMillis();
+        result = enhancedBubbleSortParam(arr);
+        stop = System.currentTimeMillis();
+        answer[6] = result[0];
+        answer[7] = result[1];
+        answer[8] = (int)(stop - start);
+    
+        // Enhanced Bubble Sort ArrayList
+        list = arrayToArrayList(arrIn);
+        start = System.currentTimeMillis();
+        result = enhancedBubbleSortList(list);
+        stop = System.currentTimeMillis();
+        answer[9] = result[0];
+        answer[10] = result[1];
+        answer[11] = (int)(stop - start);
     
 
         return answer;
-    }
-
-    // Algorithm Bubble Sort
-    public static int bubbleSort (int [] arr) {
-
-        int comparisons = 0;
-
-        for (int pass = 0; pass < arr.length - 1; pass++) {
-            for (int i = 0; i < arr.length - 1; i++) {
-                comparisons++;
-                if (arr[i] > arr[i + 1]) {
-                    swap(arr, i, i + 1);
-                }
-            }
-        }
-        return comparisons;
     }
 
     // Algorithm Bubble Sort
@@ -189,9 +137,10 @@ class Start {
 
 
     // Algorithm Enhanced Bubble Sort
-    public static int enhancedBubbleSort (int [] arr) {
+    public static int[] enhancedBubbleSortParam (int [] arr) {
 
         int comparisons = 0;
+        int swaps = 0;
         boolean sorted;
 
         for (int pass = 0; pass < arr.length - 1; pass++) {
@@ -199,6 +148,7 @@ class Start {
             for (int i = 0; i < arr.length - 1 - pass; i++) {
                 comparisons++;
                 if (arr[i] > arr[i + 1]) {
+                    swaps++;
                     swap(arr, i, i + 1);
                     sorted = false;
                 }
@@ -207,31 +157,36 @@ class Start {
                 break;
             }
         }
-        return comparisons;
+        int[] answer = {comparisons, swaps};
+        return answer;
     }
 
     // Version for ArrayList
     // Algorithm Bubble Sort
-    public static int bubbleSortList (ArrayList<Integer> arr) {
+    public static int[] bubbleSortList (ArrayList<Integer> arr) {
 
         int comparisons = 0;
+        int swaps = 0;
 
         for (int pass = 0; pass < arr.size() - 1; pass++) {
             for (int i = 0; i < arr.size() - 1; i++) {
                 comparisons++;
                 if (arr.get(i) > arr.get(i + 1)) {
+                    swaps++;
                     swapList(arr, i, i + 1);
                 }
             }
         }
-        return comparisons;
+        int[] answer = {comparisons, swaps};
+        return answer;
     }
 
 
     // Algorithm Enhanced Bubble Sort
-    public static int enhancedBubbleSortList (ArrayList<Integer> arr) {
+    public static int[] enhancedBubbleSortList (ArrayList<Integer> arr) {
 
         int comparisons = 0;
+        int swaps = 0;
         boolean sorted;
 
         for (int pass = 0; pass < arr.size() - 1; pass++) {
@@ -239,6 +194,7 @@ class Start {
             for (int i = 0; i < arr.size() - 1 - pass; i++) {
                 comparisons++;
                 if (arr.get(i) > arr.get(i + 1)) {
+                    swaps++;
                     swapList(arr, i, i + 1);
                     sorted = false;
                 }
@@ -247,7 +203,8 @@ class Start {
                 break;
             }
         }
-        return comparisons;
+        int[] answer = {comparisons, swaps};
+        return answer;
     }
 
 
