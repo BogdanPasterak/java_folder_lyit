@@ -8,10 +8,7 @@ public class Bubble_Sort_Steps {
 
         // Variable
         int [] numbers = {22, 11, 34, -5, 3, 40, 9, 16, 6};
-        int comp = 0;
 
-        // Random distribution
-        System.out.println("\n  ---   Random distribution   ---");
         System.out.println("Array : " + Arrays.toString(numbers));  
         bubbleSort(numbers);
         System.out.println();

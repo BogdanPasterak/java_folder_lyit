@@ -2,9 +2,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
+// Bogdan Pasterak L00157106
+// Practical 1. Performance test of two bubble sort algorithms
+// 01/02/2021
+
 class Start {  
-    // Bogdan Pasterak L00157106
-    // Practical 1. Performance test of two bubble sort algorithms
     public static void main(String args[]){ 
 
 
