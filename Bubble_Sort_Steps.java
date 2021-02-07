@@ -1,22 +1,25 @@
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 
 public class Bubble_Sort_Steps {
     // Bogdan Pasterak L00157106
     // Practical 1. Performance test of two bubble sort algorithms
-    public static void main(String args[]){ 
-
+    public static void main(String args[]) {
 
         // Variable
-        int [] numbers = {22, 11, 34, -5, 3, 40, 9, 16, 6};
+        // int[] numbers = { 22, 11, 34, -5, 3, 40, 9, 16, 6 };
+        // int[] numbers = { 1, 2, 3, 4, 5, 6 };
+        int[] numbers = { 6, 5, 4, 3, 2, 1 };
 
-        System.out.println("Array : " + Arrays.toString(numbers));  
-        bubbleSort(numbers);
+        System.out.println("Array : " + Arrays.toString(numbers));
+        selectionSort(numbers);
         System.out.println();
 
-    }  
+    }
 
     // Algorithm Bubble Sort
-    public static int bubbleSort (int [] arr) {
+    public static int bubbleSort(int[] arr) {
 
         int comparisons = 0;
 
@@ -27,23 +30,56 @@ public class Bubble_Sort_Steps {
                     swap(arr, i, i + 1);
                 }
             }
-            System.out.println("Pass " + (pass + 1) + "  " + Arrays.toString(arr));  
+            System.out.println("Pass " + (pass + 1) + "  " + Arrays.toString(arr));
         }
         return comparisons;
     }
 
+    public static int insertionSort(int[] list) {
 
+        int comparisons = 0;
 
+        for (int i = 1; i < list.length; i++) {
+            int next = list[i];
+            // find the insertion location while moving all larger element up
+            int j = i;
+            comparisons++;
+            while (j > 0 && list[j - 1] > next) {
+                comparisons++;
+                list[j] = list[j - 1];
+                j--;
+            }
+            // insert the element
+            list[j] = next;
+            System.out.println("Pass " + (i) + "  " + Arrays.toString(list));
+        }
+        return comparisons;
+    }
+
+    public static int selectionSort(int[] arr) {
+
+        int comparisons = 0;
+
+        for (int i = 0; i < arr.length - 1; i++) {
+            int minimum = i;
+                        
+            for (int j = i + 1; j < arr.length; j++) {
+                comparisons++;
+                if (arr[j] < arr[minimum])
+                    minimum = j;
+            }
+            swap(arr, i, minimum);
+            System.out.println("Pass " + (i + 1) + "  " + Arrays.toString(arr));
+        }
+        return comparisons;
+    }
 
     // swap two element in array
-    public static void swap(int [] arr, int index1, int index2) {
+    public static void swap(int[] arr, int index1, int index2) {
         int temp;
         temp = arr[index1];
         arr[index1] = arr[index2];
         arr[index2] = temp;
     }
 
-
-
-        
 }
