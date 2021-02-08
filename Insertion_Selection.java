@@ -2,6 +2,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
+// Bogdan Pasterak L00157106
+// Practical 2. Performance test of insertion and selection sort algorithms
+// 08/02/2021
+
 public class Insertion_Selection {
 
     public static void main(String args[]){ 

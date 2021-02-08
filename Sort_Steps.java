@@ -1,19 +1,20 @@
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
 
-public class Bubble_Sort_Steps {
+public class Sort_Steps {
     // Bogdan Pasterak L00157106
-    // Practical 1. Performance test of two bubble sort algorithms
+    // Practical 1. Performance test of two bubble sort,
+    // insertion and selection sort algorithms
     public static void main(String args[]) {
 
         // Variable
         // int[] numbers = { 22, 11, 34, -5, 3, 40, 9, 16, 6 };
-        // int[] numbers = { 1, 2, 3, 4, 5, 6 };
-        int[] numbers = { 6, 5, 4, 3, 2, 1 };
+        int[] numbers = { 9,8,7,6,5,4,3,2,1 };
 
         System.out.println("Array : " + Arrays.toString(numbers));
-        selectionSort(numbers);
+        bubbleSort(numbers);
+        // enhancedBubbleSort(numbers);
+        // insertionSort(numbers);
+        // selectionSort(numbers);
         System.out.println();
 
     }
@@ -31,6 +32,29 @@ public class Bubble_Sort_Steps {
                 }
             }
             System.out.println("Pass " + (pass + 1) + "  " + Arrays.toString(arr));
+        }
+        return comparisons;
+    }
+
+    // Algorithm Enhanced Bubble Sort
+    public static int enhancedBubbleSort (int [] arr) {
+
+        int comparisons = 0;
+        boolean sorted;
+
+        for (int pass = 0; pass < arr.length - 1; pass++) {
+            sorted = true;
+            for (int i = 0; i < arr.length - 1 - pass; i++) {
+                comparisons++;
+                if (arr[i] > arr[i + 1]) {
+                    swap(arr, i, i + 1);
+                    sorted = false;
+                }
+            }
+            System.out.println("Pass " + (pass + 1) + "  " + Arrays.toString(arr));
+            if (sorted) {
+                break;
+            }
         }
         return comparisons;
     }
