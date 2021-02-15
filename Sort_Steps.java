@@ -7,8 +7,8 @@ public class Sort_Steps {
     public static void main(String args[]) {
 
         // Variable
-        // int[] numbers = { 22, 11, 34, -5, 3, 40, 9, 16, 6 };
-        int[] numbers = { 9,8,7,6,5,4,3,2,1 };
+        int[] numbers = { 22, 11, 34, -5, 3, 40, 9, 16, 6 };
+        // int[] numbers = { 9,8,7,6,5,4,3,2,1 };
 
         System.out.println("Array : " + Arrays.toString(numbers));
         bubbleSort(numbers);
