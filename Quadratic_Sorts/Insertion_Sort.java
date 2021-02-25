@@ -6,10 +6,11 @@ import java.util.ArrayList;
 // Practical 3. Algorithms Insertion Sort 
 // 25/02/2021
 
-public class Insertion_Sort {
+public class Insertion_Sort implements Sort {
 
     // Algorithm Insertion Sort
-    public static int[] insertionSort(int[] arr) {
+    @Override
+    public int[] sortArray(int[] arr) {
 
         int comparisons = 0;
         int shifts = 0;
@@ -37,7 +38,8 @@ public class Insertion_Sort {
     }
 
     // Version for ArrayList
-    public static int[] insertionSortList(ArrayList<Integer> list) {
+    @Override
+    public int[] sortList(ArrayList<Integer> list) {
 
         int comparisons = 0;
         int shifts = 0;

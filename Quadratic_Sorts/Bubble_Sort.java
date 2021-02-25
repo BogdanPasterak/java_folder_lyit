@@ -6,13 +6,14 @@ import java.util.ArrayList;
 // Practical 1. Algorythm Bubble Sort
 // 25/02/2021
 
-public class Bubble_Sort {  
+public class Bubble_Sort implements Sort {  
 
     // Algorithm Enhanced Bubble Sort
     // @param reference of array
     // @return modified arrays
     // @return array[2] {number of comparisons and swaps}
-    public static int[] bubbleSortArray (int [] arr) {
+    @Override
+    public int[] sortArray (int [] arr) {
 
         int comparisons = 0;
         int swaps = 0;
@@ -37,7 +38,8 @@ public class Bubble_Sort {
     }
 
     // Version for ArrayList
-    public static int[] BubbleSortList (ArrayList<Integer> list) {
+    @Override
+    public int[] sortList (ArrayList<Integer> list) {
 
         int comparisons = 0;
         int swaps = 0;

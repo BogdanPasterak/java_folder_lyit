@@ -43,11 +43,15 @@ public class Quadratic_Sorts {
         // copies for sort
         int[] arr;
         ArrayList<Integer> list;
+        Sort bubble = new Bubble_Sort();
+        Sort selection = new Selection_Sort();
+        Sort insertion = new Insertion_Sort();
+
 
         // Bubble Sort array
         arr = Arrays.copyOf(arrIn, arrIn.length);
         time.start();
-        result = Bubble_Sort.bubbleSortArray(arr);
+        result = bubble.sortArray(arr);
         time.stop();
         answer[0] = result[0];
         answer[1] = result[1];
@@ -56,7 +60,7 @@ public class Quadratic_Sorts {
         // Bubble Sort ArrayList
         list = arrayToArrayList(arrIn);
         time.start();
-        result = Bubble_Sort.BubbleSortList(list);
+        result = bubble.sortList(list);
         time.stop();
         answer[3] = result[0];
         answer[4] = result[1];
@@ -66,7 +70,7 @@ public class Quadratic_Sorts {
         // Selection Sort array
         arr = Arrays.copyOf(arrIn, arrIn.length);
         time.start();
-        result = Selection_Sort.selectionSort(arr);
+        result = selection.sortArray(arr);
         time.stop();
         answer[6] = result[0];
         answer[7] = result[1];
@@ -75,7 +79,7 @@ public class Quadratic_Sorts {
         // Selection Sort ArrayList
         list = arrayToArrayList(arrIn);
         time.start();
-        result = Selection_Sort.selectionSortList(list);
+        result = selection.sortList(list);
         time.stop();
         answer[9] = result[0];
         answer[10] = result[1];
@@ -84,7 +88,7 @@ public class Quadratic_Sorts {
         // Insertion Sort array
         arr = Arrays.copyOf(arrIn, arrIn.length);
         time.start();
-        result = Insertion_Sort.insertionSort(arr);
+        result = insertion.sortArray(arr);
         time.stop();
         answer[12] = result[0];
         answer[13] = result[1];
@@ -94,7 +98,7 @@ public class Quadratic_Sorts {
         // Insertion Sort ArrayList
         list = arrayToArrayList(arrIn);
         time.start();
-        result = Insertion_Sort.insertionSortList(list);
+        result = insertion.sortList(list);
         time.stop();
         answer[15] = result[0];
         answer[16] = result[1];

@@ -6,10 +6,11 @@ import java.util.ArrayList;
 // Practical 3. Algorithms Selection Sort 
 // 25/02/2021
 
-public class Selection_Sort {
+public class Selection_Sort implements Sort {
 
     // Algorithm Selection Sort
-    public static int[] selectionSort(int[] arr) {
+    @Override
+    public int[] sortArray(int[] arr) {
 
         int comparisons = 0;
         int swaps = 0;
@@ -32,7 +33,8 @@ public class Selection_Sort {
     }
 
     // Version for ArrayList
-    public static int[] selectionSortList(ArrayList<Integer> arr) {
+    @Override
+    public int[] sortList(ArrayList<Integer> arr) {
 
         int comparisons = 0;
         int swaps = 0;
