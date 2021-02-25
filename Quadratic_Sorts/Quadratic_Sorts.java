@@ -43,66 +43,46 @@ public class Quadratic_Sorts {
         // copies for sort
         int[] arr;
         ArrayList<Integer> list;
-        Sort bubble = new Bubble_Sort();
-        Sort selection = new Selection_Sort();
-        Sort insertion = new Insertion_Sort();
+        Sort[] algorythms = {new Bubble_Sort(), new Selection_Sort(), new Insertion_Sort()};
+        long averageTime = 0;
+        int repete = 20;
 
-
-        // Bubble Sort array
-        arr = Arrays.copyOf(arrIn, arrIn.length);
-        time.start();
-        result = bubble.sortArray(arr);
-        time.stop();
-        answer[0] = result[0];
-        answer[1] = result[1];
-        answer[2] = (int) (time.getElapsedTime() / 1000);   // micro secound
-
-        // Bubble Sort ArrayList
-        list = arrayToArrayList(arrIn);
-        time.start();
-        result = bubble.sortList(list);
-        time.stop();
-        answer[3] = result[0];
-        answer[4] = result[1];
-        answer[5] = (int) (time.getElapsedTime() / 1000);
-
-
-        // Selection Sort array
-        arr = Arrays.copyOf(arrIn, arrIn.length);
-        time.start();
-        result = selection.sortArray(arr);
-        time.stop();
-        answer[6] = result[0];
-        answer[7] = result[1];
-        answer[8] = (int) (time.getElapsedTime() / 1000);
-
-        // Selection Sort ArrayList
-        list = arrayToArrayList(arrIn);
-        time.start();
-        result = selection.sortList(list);
-        time.stop();
-        answer[9] = result[0];
-        answer[10] = result[1];
-        answer[11] = (int) (time.getElapsedTime() / 1000);
-
-        // Insertion Sort array
-        arr = Arrays.copyOf(arrIn, arrIn.length);
-        time.start();
-        result = insertion.sortArray(arr);
-        time.stop();
-        answer[12] = result[0];
-        answer[13] = result[1];
-        answer[14] = (int) (time.getElapsedTime() / 1000);
-
-
-        // Insertion Sort ArrayList
-        list = arrayToArrayList(arrIn);
-        time.start();
-        result = insertion.sortList(list);
-        time.stop();
-        answer[15] = result[0];
-        answer[16] = result[1];
-        answer[17] = (int) (time.getElapsedTime() / 1000);
+        int index = 0;
+        for (Sort algorythm : algorythms) {
+            
+            // Sort Array
+            arr = Arrays.copyOf(arrIn, arrIn.length);
+            result = algorythm.sortArray(arr);
+            averageTime = 0;
+            // 11 tests , ignored first one
+            for (int i = 0; i <= repete; i++) {
+                time.start();
+                algorythm.sortArray(arr);
+                time.stop();
+                if ( i > 0)
+                    averageTime += time.getElapsedTime();
+            }
+            answer[index] = result[0];
+            answer[index+1] = result[1];
+            answer[index+2] = (int) (averageTime / (repete *1000) );   // micro secound
+    
+            // Sort ArrayList
+            list = arrayToArrayList(arrIn);
+            result = algorythm.sortList(list);
+            averageTime = 0;
+            // 11 tests , ignored first one
+            for (int i = 0; i <= repete; i++) {
+                time.start();
+                algorythm.sortList(list);
+                time.stop();
+                if ( i > 0)
+                    averageTime += time.getElapsedTime();
+            }
+            answer[index+3] = result[0];
+            answer[index+4] = result[1];
+            answer[index+5] = (int) (averageTime / (repete *1000) );   // micro secound
+            index += 6;
+        }
 
         return answer;
     }
