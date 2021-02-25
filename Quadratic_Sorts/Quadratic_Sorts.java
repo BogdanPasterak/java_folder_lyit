@@ -17,7 +17,7 @@ public class Quadratic_Sorts {
         int[] answer;
 
         firstLine();
-        
+
         numbers = getRandomArray();
         answer = executeAlgorithms(numbers);
         addLine("Random Dist.", answer);
@@ -31,15 +31,88 @@ public class Quadratic_Sorts {
         addLine("   Invert   ", answer);
 
     }
+    
+    // executes algorithms on a given array
+    // @param array of integer
+    // @return array of swaps, comparison and times of executed algorithms
+    public static int[] executeAlgorithms(int[] arrIn) {
 
-    private static void firstLine() {
-        System.out.println("\nSel -> Selection Sort,   Ins -> Insertion Sort");
-        System.out.println("c -> comparisons, s -> swaps(Sel) or shifts(Ins), t -> Time\n");
-        System.out.println("------------------------------------------------------------------------------");
-        System.out.println("| Data type  |   array  Sel  | ArrayList Sel |   array  Ins  | ArrayList Ins |");
-        System.out.println("|------------+---------------+---------------+---------------+---------------|");
+        int[] answer = new int[18];
+        StopWatch time = new StopWatch(true);
+        int[] result;
+        // copies for sort
+        int[] arr;
+        ArrayList<Integer> list;
+
+        // Bubble Sort array
+        arr = Arrays.copyOf(arrIn, arrIn.length);
+        time.start();
+        result = Bubble_Sort.bubbleSortArray(arr);
+        time.stop();
+        answer[0] = result[0];
+        answer[1] = result[1];
+        answer[2] = (int) (time.getElapsedTime() / 1000);   // micro secound
+
+        // Bubble Sort ArrayList
+        list = arrayToArrayList(arrIn);
+        time.start();
+        result = Bubble_Sort.BubbleSortList(list);
+        time.stop();
+        answer[3] = result[0];
+        answer[4] = result[1];
+        answer[5] = (int) (time.getElapsedTime() / 1000);
+
+
+        // Selection Sort array
+        arr = Arrays.copyOf(arrIn, arrIn.length);
+        time.start();
+        result = Selection_Sort.selectionSort(arr);
+        time.stop();
+        answer[6] = result[0];
+        answer[7] = result[1];
+        answer[8] = (int) (time.getElapsedTime() / 1000);
+
+        // Selection Sort ArrayList
+        list = arrayToArrayList(arrIn);
+        time.start();
+        result = Selection_Sort.selectionSortList(list);
+        time.stop();
+        answer[9] = result[0];
+        answer[10] = result[1];
+        answer[11] = (int) (time.getElapsedTime() / 1000);
+
+        // Insertion Sort array
+        arr = Arrays.copyOf(arrIn, arrIn.length);
+        time.start();
+        result = Insertion_Sort.insertionSort(arr);
+        time.stop();
+        answer[12] = result[0];
+        answer[13] = result[1];
+        answer[14] = (int) (time.getElapsedTime() / 1000);
+
+
+        // Insertion Sort ArrayList
+        list = arrayToArrayList(arrIn);
+        time.start();
+        result = Insertion_Sort.insertionSortList(list);
+        time.stop();
+        answer[15] = result[0];
+        answer[16] = result[1];
+        answer[17] = (int) (time.getElapsedTime() / 1000);
+
+        return answer;
     }
 
+    // Header of table
+    private static void firstLine() {
+        System.out.println("\nBub -> Bubble Sort,   Sel -> Selection Sort,   Ins -> Insertion Sort");
+        System.out.println("c -> comparisons, s -> swaps(Sel) or shifts(Ins), t -> elapsed time ( microseconds )\n");
+        System.out.println("--------------------------------------------------------------------------------------------------------------");
+        System.out.println("| Data type  |   array  Bub  | ArrayList Bub |   array  Sel  | ArrayList Sel |   array  Ins  | ArrayList Ins |");
+        System.out.println("|------------+---------------+---------------+---------------+---------------+---------------+---------------|");
+    }
+
+    // row of table
     private static void addLine(String type, int[] answer) {
         String s;
         // comparisons
@@ -48,6 +121,8 @@ public class Quadratic_Sorts {
         s += " c= " + formatNumber(answer[3]) + " |";
         s += " c= " + formatNumber(answer[6]) + " |";
         s += " c= " + formatNumber(answer[9]) + " |";
+        s += " c= " + formatNumber(answer[12]) + " |";
+        s += " c= " + formatNumber(answer[15]) + " |";
         System.out.println(s);
         // swaps
         s = "|" + type + "|";
@@ -55,199 +130,28 @@ public class Quadratic_Sorts {
         s += " s= " + formatNumber(answer[4]) + " |";
         s += " s= " + formatNumber(answer[7]) + " |";
         s += " s= " + formatNumber(answer[10]) + " |";
+        s += " s= " + formatNumber(answer[13]) + " |";
+        s += " s= " + formatNumber(answer[16]) + " |";
         System.out.println(s);
-        // swaps
+        // elapsed time
         s = "|            |";
         s += " t= " + formatNumber(answer[2]) + " |";
         s += " t= " + formatNumber(answer[5]) + " |";
         s += " t= " + formatNumber(answer[8]) + " |";
         s += " t= " + formatNumber(answer[11]) + " |";
+        s += " t= " + formatNumber(answer[14]) + " |";
+        s += " t= " + formatNumber(answer[17]) + " |";
         System.out.println(s);
-        System.out.println("|------------+---------------+---------------+---------------+---------------|");
+        System.out.println("|------------+---------------+---------------+---------------+---------------+---------------+---------------|");
     }
 
+    // number formatting up to 10 characters with gaps
     private static String formatNumber(int num) {
         String s = String.format("%8d", num);
         s = s.substring(0, 2) + " " + s.substring(2, 5) + " " + s.substring(5);
         return s;
     }
 
-    public static int[] executeAlgorithms(int[] arrIn) {
-
-        int[] answer = new int[12];
-        long start, stop;
-        int[] result;
-        int[] arr;
-        ArrayList<Integer> list;
-
-        // Selection Sort array
-        arr = Arrays.copyOf(arrIn, arrIn.length);
-        start = System.currentTimeMillis();
-        result = selectionSort(arr);
-        stop = System.currentTimeMillis();
-        answer[0] = result[0];
-        answer[1] = result[1];
-        answer[2] = (int) (stop - start);
-
-        // Selection Sort ArrayList
-        list = arrayToArrayList(arrIn);
-        start = System.currentTimeMillis();
-        result = selectionSortList(list);
-        stop = System.currentTimeMillis();
-        answer[3] = result[0];
-        answer[4] = result[1];
-        answer[5] = (int) (stop - start);
-
-        // Insertion Sort array
-        arr = Arrays.copyOf(arrIn, arrIn.length);
-        start = System.currentTimeMillis();
-        result = insertionSort(arr);
-        stop = System.currentTimeMillis();
-        answer[6] = result[0];
-        answer[7] = result[1];
-        answer[8] = (int) (stop - start);
-
-        // Insertion Sort ArrayList
-        list = arrayToArrayList(arrIn);
-        start = System.currentTimeMillis();
-        result = insertionSortList(list);
-        stop = System.currentTimeMillis();
-        answer[9] = result[0];
-        answer[10] = result[1];
-        answer[11] = (int) (stop - start);
-
-        return answer;
-    }
-
-    // Algorithm Selection Sort
-    public static int[] selectionSort(int[] arr) {
-
-        int comparisons = 0;
-        int swaps = 0;
-
-        for (int pass = 0; pass < arr.length - 1; pass++) {
-            int minimum = pass;
-
-            for (int i = pass + 1; i < arr.length; i++) {
-                comparisons++;
-                if (arr[i] < arr[minimum])
-                    minimum = i;
-            }
-            if (pass != minimum) {
-                swaps++;
-                swap(arr, pass, minimum);
-            }
-        }
-        int[] answer = { comparisons, swaps };
-        return answer;
-    }
-
-    // Algorithm Insertion Sort
-    public static int[] insertionSort(int[] arr) {
-
-        int comparisons = 0;
-        int shifts = 0;
-
-        for (int pass = 1; pass < arr.length; pass++) {
-            int next = arr[pass];
-            // find the insertion location while moving all larger element up
-            int i = pass;
-            // minimum one comparison (while loop)
-            comparisons++;
-            while (i > 0 && arr[i - 1] > next) {
-                comparisons++;
-                shifts++;
-                shift(arr, i, arr[i - 1]);
-                i--;
-            }
-            // insert the element if not the same
-            if (i != pass) {
-                shifts++;
-                shift(arr, i, next);
-            }
-        }
-        int[] answer = { comparisons, shifts };
-        return answer;
-    }
-
-    // Version for ArrayList
-
-    // Algorithm Selection Sort
-    public static int[] selectionSortList(ArrayList<Integer> arr) {
-
-        int comparisons = 0;
-        int swaps = 0;
-
-        for (int pass = 0; pass < arr.size() - 1; pass++) {
-            int minimum = pass;
-
-            for (int i = pass + 1; i < arr.size(); i++) {
-                comparisons++;
-                if (arr.get(i) < arr.get(minimum))
-                    minimum = i;
-            }
-            if (pass != minimum) {
-                swaps++;
-                swapList(arr, pass, minimum);
-            }
-        }
-        int[] answer = { comparisons, swaps };
-        return answer;
-    }
-
-    // Algorithm Insertion Sort
-    public static int[] insertionSortList(ArrayList<Integer> arr) {
-
-        int comparisons = 0;
-        int shifts = 0;
-
-        for (int pass = 1; pass < arr.size(); pass++) {
-            int next = arr.get(pass);
-            // find the insertion location while moving all larger element up
-            int i = pass;
-            // minimum one comparison (while loop)
-            comparisons++;
-            while (i > 0 && arr.get(i - 1) > next) {
-                comparisons++;
-                shifts++;
-                shiftList(arr, i, arr.get(i - 1));
-                i--;
-            }
-            // insert the element if not the same
-            if (i != pass) {
-                shifts++;
-                shiftList(arr, i, next);
-            }
-        }
-        int[] answer = { comparisons, shifts };
-        return answer;
-    }
-
-    // swap two element in array
-    public static void swap(int[] arr, int index1, int index2) {
-        int temp;
-        temp = arr[index1];
-        arr[index1] = arr[index2];
-        arr[index2] = temp;
-    }
-
-    // shift element to position in array
-    public static void shift(int[] arr, int index, int value) {
-        arr[index] = value;
-    }
-
-    // swap two element in ArrayList
-    public static void swapList(ArrayList<Integer> arr, int index1, int index2) {
-        Integer temp;
-        temp = arr.get(index1);
-        arr.set(index1, arr.get(index2));
-        arr.set(index2, temp);
-    }
-
-    // shift element to position in array
-    public static void shiftList(ArrayList<Integer> arr, int index, Integer value) {
-        arr.set(index, value);
-    }
 
     // generate arrays (10 000 elements)
     // random distribution
@@ -281,44 +185,12 @@ public class Quadratic_Sorts {
         return arr;
     }
 
-    // generate ArrayLists (10 000 elements)
-    // random distribution
-    public static ArrayList<Integer> getRandomArrayList() {
-        Random rn = new Random();
-        ArrayList<Integer> arr = new ArrayList<Integer>();
-
-        for (int i = 0; i < 10000; i++) {
-            arr.add(rn.nextInt(10000));
-        }
-        return arr;
-    }
-
-    // sorted number
-    public static ArrayList<Integer> getSortedList() {
-        ArrayList<Integer> arr = new ArrayList<Integer>();
-
-        for (int i = 0; i < 10000; i++) {
-            arr.add(i);
-        }
-        return arr;
-    }
-
-    // invert number
-    public static ArrayList<Integer> getInvertList() {
-        ArrayList<Integer> arr = new ArrayList<Integer>();
-
-        for (int i = 0; i < 10000; i++) {
-            arr.add(10000 - 1 - i);
-        }
-        return arr;
-    }
-
+    // ArrayList from array
     public static ArrayList<Integer> arrayToArrayList(int[] arr) {
         ArrayList<Integer> list = new ArrayList<Integer>();
         for (int i : arr) {
             list.add(i);
         }
-        ;
         return list;
     }
 
