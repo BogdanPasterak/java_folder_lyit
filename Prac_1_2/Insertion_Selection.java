@@ -1,12 +1,15 @@
+package Prac_1_2;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
 // Bogdan Pasterak L00157106
-// Practical 1. Performance test of two bubble sort algorithms
-// 01/02/2021
+// Practical 2. Performance test of insertion and selection sort algorithms
+// 08/02/2021
 
-class Start {  
+public class Insertion_Selection {
+
     public static void main(String args[]){ 
 
 
@@ -30,10 +33,10 @@ class Start {
     }  
 
     private static void firstLine() {
-        System.out.println("\nBS -> Bubble Sort,   EBS -> Enhanced Bubble Sort");
-        System.out.println("c -> comparisons,   s -> swaps,   t -> Elapsed Time\n");
+        System.out.println("\nSel -> Selection Sort,   Ins -> Insertion Sort");
+        System.out.println("c -> comparisons, s -> swaps(Sel) or shifts(Ins), t -> Time\n");
         System.out.println("------------------------------------------------------------------------------");
-        System.out.println("| Data type  |   array   BS  | ArrayList  BS |   array  EBS  | ArrayList EBS |");
+        System.out.println("| Data type  |   array  Sel  | ArrayList Sel |   array  Ins  | ArrayList Ins |");
         System.out.println("|------------+---------------+---------------+---------------+---------------|");
     }
 
@@ -77,106 +80,116 @@ class Start {
         int[] arr;
         ArrayList<Integer> list;
 
-        // Bubble Sort array
+        // Selection Sort array
         arr = Arrays.copyOf(arrIn, arrIn.length);
         start = System.currentTimeMillis();
-        result = bubbleSortParam(arr);
+        result = selectionSort(arr);
         stop = System.currentTimeMillis();
         answer[0] = result[0];
         answer[1] = result[1];
         answer[2] = (int)(stop - start);
 
-        // Bubble Sort ArrayList
+        // Selection Sort ArrayList
         list = arrayToArrayList(arrIn);
         start = System.currentTimeMillis();
-        result = bubbleSortList(list);
+        result = selectionSortList(list);
         stop = System.currentTimeMillis();
         answer[3] = result[0];
         answer[4] = result[1];
         answer[5] = (int)(stop - start);
         
 
-        // Enhanced Bubble Sort array
+        // Insertion Sort array
         arr = Arrays.copyOf(arrIn, arrIn.length);
         start = System.currentTimeMillis();
-        result = enhancedBubbleSortParam(arr);
+        result = insertionSort(arr);
         stop = System.currentTimeMillis();
         answer[6] = result[0];
         answer[7] = result[1];
         answer[8] = (int)(stop - start);
     
-        // Enhanced Bubble Sort ArrayList
+        // Insertion Sort ArrayList
         list = arrayToArrayList(arrIn);
         start = System.currentTimeMillis();
-        result = enhancedBubbleSortList(list);
+        result = insertionSortList(list);
         stop = System.currentTimeMillis();
         answer[9] = result[0];
         answer[10] = result[1];
         answer[11] = (int)(stop - start);
     
-
         return answer;
     }
 
-    // Algorithm Bubble Sort
-    public static int[] bubbleSortParam (int [] arr) {
+    // Algorithm Selection Sort
+    public static int[] selectionSort(int[] arr) {
 
         int comparisons = 0;
         int swaps = 0;
 
         for (int pass = 0; pass < arr.length - 1; pass++) {
-            for (int i = 0; i < arr.length - 1; i++) {
+            int minimum = pass;
+                        
+            for (int i = pass + 1; i < arr.length; i++) {
                 comparisons++;
-                if (arr[i] > arr[i + 1]) {
-                    swaps++;
-                    swap(arr, i, i + 1);
-                }
+                if (arr[i] < arr[minimum])
+                    minimum = i;
+            }
+            if (pass != minimum) {
+                swaps++;
+                swap(arr, pass, minimum);
             }
         }
         int[] answer = {comparisons, swaps};
         return answer;
     }
 
-
-    // Algorithm Enhanced Bubble Sort
-    public static int[] enhancedBubbleSortParam (int [] arr) {
+    // Algorithm Insertion Sort
+    public static int[] insertionSort(int[] arr) {
 
         int comparisons = 0;
-        int swaps = 0;
-        boolean sorted;
+        int shifts = 0;
 
-        for (int pass = 0; pass < arr.length - 1; pass++) {
-            sorted = true;
-            for (int i = 0; i < arr.length - 1 - pass; i++) {
+        for (int pass = 1; pass < arr.length; pass++) {
+            int next = arr[pass];
+            // find the insertion location while moving all larger element up
+            int i = pass;
+            // minimum one comparison (while loop)
+            comparisons++;
+            while (i > 0 && arr[i - 1] > next) {
                 comparisons++;
-                if (arr[i] > arr[i + 1]) {
-                    swaps++;
-                    swap(arr, i, i + 1);
-                    sorted = false;
-                }
+                shifts++;
+                shift(arr, i, arr[i - 1]);
+                i--;
             }
-            if (sorted) {
-                break;
+            // insert the element if not the same
+            if ( i != pass) {
+                shifts++;
+                shift(arr, i, next);
             }
         }
-        int[] answer = {comparisons, swaps};
+        int[] answer = {comparisons, shifts};
         return answer;
     }
 
     // Version for ArrayList
-    // Algorithm Bubble Sort
-    public static int[] bubbleSortList (ArrayList<Integer> arr) {
+
+    // Algorithm Selection Sort
+    public static int[] selectionSortList(ArrayList<Integer> arr) {
 
         int comparisons = 0;
         int swaps = 0;
 
         for (int pass = 0; pass < arr.size() - 1; pass++) {
-            for (int i = 0; i < arr.size() - 1; i++) {
+            int minimum = pass;
+                        
+            for (int i = pass + 1; i < arr.size(); i++) {
                 comparisons++;
-                if (arr.get(i) > arr.get(i + 1)) {
-                    swaps++;
-                    swapList(arr, i, i + 1);
-                }
+                if (arr.get(i) < arr.get(minimum))
+                    minimum = i;
+            }
+            if (pass != minimum) {
+                swaps++;
+                swapList(arr, pass, minimum);
             }
         }
         int[] answer = {comparisons, swaps};
@@ -184,31 +197,33 @@ class Start {
     }
 
 
-    // Algorithm Enhanced Bubble Sort
-    public static int[] enhancedBubbleSortList (ArrayList<Integer> arr) {
+    // Algorithm Insertion Sort 
+    public static int[] insertionSortList(ArrayList<Integer> arr) {
 
         int comparisons = 0;
-        int swaps = 0;
-        boolean sorted;
+        int shifts = 0;
 
-        for (int pass = 0; pass < arr.size() - 1; pass++) {
-            sorted = true;
-            for (int i = 0; i < arr.size() - 1 - pass; i++) {
+        for (int pass = 1; pass < arr.size(); pass++) {
+            int next = arr.get(pass);
+            // find the insertion location while moving all larger element up
+            int i = pass;
+            // minimum one comparison (while loop)
+            comparisons++;
+            while (i > 0 && arr.get(i - 1) > next) {
                 comparisons++;
-                if (arr.get(i) > arr.get(i + 1)) {
-                    swaps++;
-                    swapList(arr, i, i + 1);
-                    sorted = false;
-                }
+                shifts++;
+                shiftList(arr, i, arr.get(i - 1));
+                i--;
             }
-            if (sorted) {
-                break;
+            // insert the element if not the same
+            if ( i != pass) {
+                shifts++;
+                shiftList(arr, i, next);
             }
         }
-        int[] answer = {comparisons, swaps};
+        int[] answer = {comparisons, shifts};
         return answer;
     }
-
 
 
     // swap two element in array
@@ -219,12 +234,22 @@ class Start {
         arr[index2] = temp;
     }
 
+    // shift element to position in array
+    public static void shift(int [] arr, int index, int value) {
+        arr[index] = value;
+    }
+
     // swap two element in ArrayList
     public static void swapList(ArrayList<Integer> arr, int index1, int index2) {
-        int temp;
+        Integer temp;
         temp = arr.get(index1);
         arr.set(index1, arr.get(index2));
         arr.set(index2, temp);
+    }
+
+    // shift element to position in array
+    public static void shiftList(ArrayList<Integer> arr, int index, Integer value) {
+        arr.set(index, value);
     }
 
     // generate arrays (10 000 elements)
@@ -323,5 +348,5 @@ class Start {
 
         return getDisplayBigArray(ar);
     }
-}
 
+}

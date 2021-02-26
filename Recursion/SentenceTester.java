@@ -1,3 +1,5 @@
+package Recursion;
+
 public class SentenceTester {
     public static void main(String[] args) {
         Sentence sentence = new Sentence("Ala");
