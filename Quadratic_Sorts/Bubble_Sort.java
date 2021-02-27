@@ -17,20 +17,14 @@ public class Bubble_Sort implements Sort {
 
         int comparisons = 0;
         int swaps = 0;
-        boolean sorted;
 
         for (int pass = 0; pass < arr.length - 1; pass++) {
-            sorted = true;
-            for (int i = 0; i < arr.length - 1 - pass; i++) {
+            for (int i = 0; i < arr.length - 1; i++) {
                 comparisons++;
                 if (arr[i] > arr[i + 1]) {
                     swaps++;
                     Swap.swap(arr, i, i + 1);
-                    sorted = false;
                 }
-            }
-            if (sorted) {
-                break;
             }
         }
         int[] answer = {comparisons, swaps};
@@ -43,20 +37,14 @@ public class Bubble_Sort implements Sort {
 
         int comparisons = 0;
         int swaps = 0;
-        boolean sorted;
 
         for (int pass = 0; pass < list.size() - 1; pass++) {
-            sorted = true;
-            for (int i = 0; i < list.size() - 1 - pass; i++) {
+            for (int i = 0; i < list.size() - 1; i++) {
                 comparisons++;
                 if (list.get(i) > list.get(i + 1)) {
                     swaps++;
                     Swap.swapList(list, i, i + 1);
-                    sorted = false;
                 }
-            }
-            if (sorted) {
-                break;
             }
         }
         int[] answer = {comparisons, swaps};

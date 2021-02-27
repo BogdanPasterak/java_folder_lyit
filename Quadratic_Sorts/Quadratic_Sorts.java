@@ -37,13 +37,13 @@ public class Quadratic_Sorts {
     // @return array of swaps, comparison and times of executed algorithms
     public static int[] executeAlgorithms(int[] arrIn) {
 
-        int[] answer = new int[18];
+        int[] answer = new int[24];
         StopWatch time = new StopWatch(true);
         int[] result;
         // copies for sort
         int[] arr;
         ArrayList<Integer> list;
-        Sort[] algorythms = {new Enhanched_Sort(), new Selection_Sort(), new Insertion_Sort()};
+        Sort[] algorythms = {new Bubble_Sort(), new Enhanched_Sort(), new Selection_Sort(), new Insertion_Sort()};
         long averageTime = 0;
         int repete = 20;
 
@@ -91,9 +91,9 @@ public class Quadratic_Sorts {
     private static void firstLine() {
         System.out.println("\nBub -> Bubble Sort, Enh -> Enhanched B. Sort,   Sel -> Selection Sort,   Ins -> Insertion Sort");
         System.out.println("c -> comparisons, s -> swaps(Sel) or shifts(Ins), t -> elapsed time ( microseconds )\n");
-        System.out.println("--------------------------------------------------------------------------------------");
-        System.out.println("| Data | array Bub  | ArrayL Bub | array Sel  | ArrayL Sel | array Ins  | ArrayL Ins |");
-        System.out.println("|------+------------+------------+------------+------------+------------+------------|");
+        System.out.println("----------------------------------------------------------------------------------------------------------------");
+        System.out.println("| Data | array Bub  | ArrayL Bub | array Enh  | ArrayL Enh | array Sel  | ArrayL Sel | array Ins  | ArrayL Ins |");
+        System.out.println("|------+------------+------------+------------+------------+------------+------------+------------+------------|");
     }
 
     // row of table
@@ -107,6 +107,8 @@ public class Quadratic_Sorts {
         s += " c=" + formatNumber(answer[9]) + " |";
         s += " c=" + formatNumber(answer[12]) + " |";
         s += " c=" + formatNumber(answer[15]) + " |";
+        s += " c=" + formatNumber(answer[18]) + " |";
+        s += " c=" + formatNumber(answer[21]) + " |";
         System.out.println(s);
         // swaps
         s = "|" + type + "|";
@@ -116,6 +118,8 @@ public class Quadratic_Sorts {
         s += " s=" + formatNumber(answer[10]) + " |";
         s += " s=" + formatNumber(answer[13]) + " |";
         s += " s=" + formatNumber(answer[16]) + " |";
+        s += " s=" + formatNumber(answer[19]) + " |";
+        s += " s=" + formatNumber(answer[22]) + " |";
         System.out.println(s);
         // elapsed time
         s = "|      |";
@@ -125,8 +129,10 @@ public class Quadratic_Sorts {
         s += " t=" + formatNumber(answer[11]) + " |";
         s += " t=" + formatNumber(answer[14]) + " |";
         s += " t=" + formatNumber(answer[17]) + " |";
+        s += " t=" + formatNumber(answer[20]) + " |";
+        s += " t=" + formatNumber(answer[23]) + " |";
         System.out.println(s);
-        System.out.println("|------+------------+------------+------------+------------+------------+------------|");
+        System.out.println("|------+------------+------------+------------+------------+------------+------------+------------+------------|");
     }
 
     // number formatting up to 10 characters with gaps
