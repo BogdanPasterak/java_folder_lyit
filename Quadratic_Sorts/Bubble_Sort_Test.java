@@ -8,7 +8,7 @@ public class Bubble_Sort_Test {
         int[] rnd = {2,5,1,0,3,4};
         int[] test;
 
-        Sort bubble = new Bubble_Sort();
+        Sort bubble = new Enhanched_Sort();
         StopWatch time = new StopWatch(true);
 
         int startInv = 0;

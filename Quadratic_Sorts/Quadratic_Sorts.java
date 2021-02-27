@@ -20,15 +20,15 @@ public class Quadratic_Sorts {
 
         numbers = getRandomArray();
         answer = executeAlgorithms(numbers);
-        addLine("Random Dist.", answer);
+        addLine("Random", answer);
 
         numbers = getSortedArray();
         answer = executeAlgorithms(numbers);
-        addLine("   Sorted   ", answer);
+        addLine("Sorted", answer);
 
         numbers = getInvertArray();
         answer = executeAlgorithms(numbers);
-        addLine("   Invert   ", answer);
+        addLine("Invert", answer);
 
     }
     
@@ -43,7 +43,7 @@ public class Quadratic_Sorts {
         // copies for sort
         int[] arr;
         ArrayList<Integer> list;
-        Sort[] algorythms = {new Bubble_Sort(), new Selection_Sort(), new Insertion_Sort()};
+        Sort[] algorythms = {new Enhanched_Sort(), new Selection_Sort(), new Insertion_Sort()};
         long averageTime = 0;
         int repete = 20;
 
@@ -55,13 +55,13 @@ public class Quadratic_Sorts {
             result = algorythm.sortArray(arr);
             averageTime = 0;
             // 11 tests , ignored first one
-            for (int i = 0; i <= repete; i++) {
-                time.start();
-                algorythm.sortArray(arr);
-                time.stop();
-                if ( i > 0)
-                    averageTime += time.getElapsedTime();
-            }
+            // for (int i = 0; i <= repete; i++) {
+            //     time.start();
+            //     algorythm.sortArray(arr);
+            //     time.stop();
+            //     if ( i > 0)
+            //         averageTime += time.getElapsedTime();
+            // }
             answer[index] = result[0];
             answer[index+1] = result[1];
             answer[index+2] = (int) (averageTime / (repete *1000) );   // micro secound
@@ -71,13 +71,13 @@ public class Quadratic_Sorts {
             result = algorythm.sortList(list);
             averageTime = 0;
             // 11 tests , ignored first one
-            for (int i = 0; i <= repete; i++) {
-                time.start();
-                algorythm.sortList(list);
-                time.stop();
-                if ( i > 0)
-                    averageTime += time.getElapsedTime();
-            }
+            // for (int i = 0; i <= repete; i++) {
+            //     time.start();
+            //     algorythm.sortList(list);
+            //     time.stop();
+            //     if ( i > 0)
+            //         averageTime += time.getElapsedTime();
+            // }
             answer[index+3] = result[0];
             answer[index+4] = result[1];
             answer[index+5] = (int) (averageTime / (repete *1000) );   // micro secound
@@ -89,50 +89,50 @@ public class Quadratic_Sorts {
 
     // Header of table
     private static void firstLine() {
-        System.out.println("\nBub -> Bubble Sort,   Sel -> Selection Sort,   Ins -> Insertion Sort");
+        System.out.println("\nBub -> Bubble Sort, Enh -> Enhanched B. Sort,   Sel -> Selection Sort,   Ins -> Insertion Sort");
         System.out.println("c -> comparisons, s -> swaps(Sel) or shifts(Ins), t -> elapsed time ( microseconds )\n");
-        System.out.println("--------------------------------------------------------------------------------------------------------------");
-        System.out.println("| Data type  |   array  Bub  | ArrayList Bub |   array  Sel  | ArrayList Sel |   array  Ins  | ArrayList Ins |");
-        System.out.println("|------------+---------------+---------------+---------------+---------------+---------------+---------------|");
+        System.out.println("--------------------------------------------------------------------------------------");
+        System.out.println("| Data | array Bub  | ArrayL Bub | array Sel  | ArrayL Sel | array Ins  | ArrayL Ins |");
+        System.out.println("|------+------------+------------+------------+------------+------------+------------|");
     }
 
     // row of table
     private static void addLine(String type, int[] answer) {
         String s;
         // comparisons
-        s = "|            |";
-        s += " c= " + formatNumber(answer[0]) + " |";
-        s += " c= " + formatNumber(answer[3]) + " |";
-        s += " c= " + formatNumber(answer[6]) + " |";
-        s += " c= " + formatNumber(answer[9]) + " |";
-        s += " c= " + formatNumber(answer[12]) + " |";
-        s += " c= " + formatNumber(answer[15]) + " |";
+        s = "|      |";
+        s += " c=" + formatNumber(answer[0]) + " |";
+        s += " c=" + formatNumber(answer[3]) + " |";
+        s += " c=" + formatNumber(answer[6]) + " |";
+        s += " c=" + formatNumber(answer[9]) + " |";
+        s += " c=" + formatNumber(answer[12]) + " |";
+        s += " c=" + formatNumber(answer[15]) + " |";
         System.out.println(s);
         // swaps
         s = "|" + type + "|";
-        s += " s= " + formatNumber(answer[1]) + " |";
-        s += " s= " + formatNumber(answer[4]) + " |";
-        s += " s= " + formatNumber(answer[7]) + " |";
-        s += " s= " + formatNumber(answer[10]) + " |";
-        s += " s= " + formatNumber(answer[13]) + " |";
-        s += " s= " + formatNumber(answer[16]) + " |";
+        s += " s=" + formatNumber(answer[1]) + " |";
+        s += " s=" + formatNumber(answer[4]) + " |";
+        s += " s=" + formatNumber(answer[7]) + " |";
+        s += " s=" + formatNumber(answer[10]) + " |";
+        s += " s=" + formatNumber(answer[13]) + " |";
+        s += " s=" + formatNumber(answer[16]) + " |";
         System.out.println(s);
         // elapsed time
-        s = "|            |";
-        s += " t= " + formatNumber(answer[2]) + " |";
-        s += " t= " + formatNumber(answer[5]) + " |";
-        s += " t= " + formatNumber(answer[8]) + " |";
-        s += " t= " + formatNumber(answer[11]) + " |";
-        s += " t= " + formatNumber(answer[14]) + " |";
-        s += " t= " + formatNumber(answer[17]) + " |";
+        s = "|      |";
+        s += " t=" + formatNumber(answer[2]) + " |";
+        s += " t=" + formatNumber(answer[5]) + " |";
+        s += " t=" + formatNumber(answer[8]) + " |";
+        s += " t=" + formatNumber(answer[11]) + " |";
+        s += " t=" + formatNumber(answer[14]) + " |";
+        s += " t=" + formatNumber(answer[17]) + " |";
         System.out.println(s);
-        System.out.println("|------------+---------------+---------------+---------------+---------------+---------------+---------------|");
+        System.out.println("|------+------------+------------+------------+------------+------------+------------|");
     }
 
     // number formatting up to 10 characters with gaps
     private static String formatNumber(int num) {
         String s = String.format("%8d", num);
-        s = s.substring(0, 2) + " " + s.substring(2, 5) + " " + s.substring(5);
+        // s = s.substring(0, 2) + " " + s.substring(2, 5) + " " + s.substring(5);
         return s;
     }
 
