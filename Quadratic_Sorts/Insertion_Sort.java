@@ -66,5 +66,37 @@ public class Insertion_Sort implements Sort {
         return answer;
     }
 
+    @Override
+    public void sortArrayTime(int[] arr) {
+
+        for (int pass = 1; pass < arr.length; pass++) {
+            int next = arr[pass];
+            int i = pass;
+            while (i > 0 && arr[i - 1] > next) {
+                Swap.shift(arr, i, arr[i - 1]);
+                i--;
+            }
+            if ( i != pass) {
+                Swap.shift(arr, i, next);
+            }
+        }
+    }
+
+    @Override
+    public void sortListTime(ArrayList<Integer> list) {
+
+        for (int pass = 1; pass < list.size(); pass++) {
+            int next = list.get(pass);
+            int i = pass;
+            while (i > 0 && list.get(i - 1) > next) {
+                Swap.shiftList(list, i, list.get(i - 1));
+                i--;
+            }
+            if ( i != pass) {
+                Swap.shiftList(list, i, next);
+            }
+        }
+    }
+
 
 }

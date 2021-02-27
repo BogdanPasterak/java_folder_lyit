@@ -45,7 +45,7 @@ public class Quadratic_Sorts {
         ArrayList<Integer> list;
         Sort[] algorythms = {new Bubble_Sort(), new Enhanched_Sort(), new Selection_Sort(), new Insertion_Sort()};
         long averageTime = 0;
-        int repete = 20;
+        int repete = 10;
 
         int index = 0;
         for (Sort algorythm : algorythms) {
@@ -54,14 +54,14 @@ public class Quadratic_Sorts {
             arr = Arrays.copyOf(arrIn, arrIn.length);
             result = algorythm.sortArray(arr);
             averageTime = 0;
-            // 11 tests , ignored first one
-            // for (int i = 0; i <= repete; i++) {
-            //     time.start();
-            //     algorythm.sortArray(arr);
-            //     time.stop();
-            //     if ( i > 0)
-            //         averageTime += time.getElapsedTime();
-            // }
+            // repete tests , ignored first one
+            for (int i = 0; i <= repete; i++) {
+                time.start();
+                algorythm.sortArrayTime(arr);
+                time.stop();
+                if ( i > 0)
+                    averageTime += time.getElapsedTime();
+            }
             answer[index] = result[0];
             answer[index+1] = result[1];
             answer[index+2] = (int) (averageTime / (repete *1000) );   // micro secound
@@ -70,14 +70,14 @@ public class Quadratic_Sorts {
             list = arrayToArrayList(arrIn);
             result = algorythm.sortList(list);
             averageTime = 0;
-            // 11 tests , ignored first one
-            // for (int i = 0; i <= repete; i++) {
-            //     time.start();
-            //     algorythm.sortList(list);
-            //     time.stop();
-            //     if ( i > 0)
-            //         averageTime += time.getElapsedTime();
-            // }
+            // repete tests , ignored first one
+            for (int i = 0; i <= repete; i++) {
+                time.start();
+                algorythm.sortListTime(list);
+                time.stop();
+                if ( i > 0)
+                    averageTime += time.getElapsedTime();
+            }
             answer[index+3] = result[0];
             answer[index+4] = result[1];
             answer[index+5] = (int) (averageTime / (repete *1000) );   // micro secound
@@ -101,36 +101,18 @@ public class Quadratic_Sorts {
         String s;
         // comparisons
         s = "|      |";
-        s += " c=" + formatNumber(answer[0]) + " |";
-        s += " c=" + formatNumber(answer[3]) + " |";
-        s += " c=" + formatNumber(answer[6]) + " |";
-        s += " c=" + formatNumber(answer[9]) + " |";
-        s += " c=" + formatNumber(answer[12]) + " |";
-        s += " c=" + formatNumber(answer[15]) + " |";
-        s += " c=" + formatNumber(answer[18]) + " |";
-        s += " c=" + formatNumber(answer[21]) + " |";
+        for (int i = 0; i < answer.length; i += 3)
+            s += " c=" + formatNumber(answer[i]) + " |";
         System.out.println(s);
         // swaps
         s = "|" + type + "|";
-        s += " s=" + formatNumber(answer[1]) + " |";
-        s += " s=" + formatNumber(answer[4]) + " |";
-        s += " s=" + formatNumber(answer[7]) + " |";
-        s += " s=" + formatNumber(answer[10]) + " |";
-        s += " s=" + formatNumber(answer[13]) + " |";
-        s += " s=" + formatNumber(answer[16]) + " |";
-        s += " s=" + formatNumber(answer[19]) + " |";
-        s += " s=" + formatNumber(answer[22]) + " |";
+        for (int i = 1; i < answer.length; i += 3)
+            s += " s=" + formatNumber(answer[i]) + " |";
         System.out.println(s);
         // elapsed time
         s = "|      |";
-        s += " t=" + formatNumber(answer[2]) + " |";
-        s += " t=" + formatNumber(answer[5]) + " |";
-        s += " t=" + formatNumber(answer[8]) + " |";
-        s += " t=" + formatNumber(answer[11]) + " |";
-        s += " t=" + formatNumber(answer[14]) + " |";
-        s += " t=" + formatNumber(answer[17]) + " |";
-        s += " t=" + formatNumber(answer[20]) + " |";
-        s += " t=" + formatNumber(answer[23]) + " |";
+        for (int i = 2; i < answer.length; i += 3)
+            s += " t=" + formatNumber(answer[i]) + " |";
         System.out.println(s);
         System.out.println("|------+------------+------------+------------+------------+------------+------------+------------+------------|");
     }

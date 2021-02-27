@@ -34,26 +34,58 @@ public class Selection_Sort implements Sort {
 
     // Version for ArrayList
     @Override
-    public int[] sortList(ArrayList<Integer> arr) {
+    public int[] sortList(ArrayList<Integer> list) {
 
         int comparisons = 0;
         int swaps = 0;
 
-        for (int pass = 0; pass < arr.size() - 1; pass++) {
+        for (int pass = 0; pass < list.size() - 1; pass++) {
             int minimum = pass;
                         
-            for (int i = pass + 1; i < arr.size(); i++) {
+            for (int i = pass + 1; i < list.size(); i++) {
                 comparisons++;
-                if (arr.get(i) < arr.get(minimum))
+                if (list.get(i) < list.get(minimum))
                     minimum = i;
             }
             if (pass != minimum) {
                 swaps++;
-                Swap.swapList(arr, pass, minimum);
+                Swap.swapList(list, pass, minimum);
             }
         }
         int[] answer = {comparisons, swaps};
         return answer;
     }
 
+    @Override
+    public void sortArrayTime(int[] arr) {
+
+        for (int pass = 0; pass < arr.length - 1; pass++) {
+            int minimum = pass;
+                        
+            for (int i = pass + 1; i < arr.length; i++) {
+                if (arr[i] < arr[minimum])
+                    minimum = i;
+            }
+            if (pass != minimum) {
+                Swap.swap(arr, pass, minimum);
+            }
+        }
+    }
+
+    @Override
+    public void sortListTime(ArrayList<Integer> list) {
+
+        for (int pass = 0; pass < list.size() - 1; pass++) {
+            int minimum = pass;
+                        
+            for (int i = pass + 1; i < list.size(); i++) {
+                if (list.get(i) < list.get(minimum))
+                    minimum = i;
+            }
+            if (pass != minimum) {
+                Swap.swapList(list, pass, minimum);
+            }
+        }
+    }
+    
 }

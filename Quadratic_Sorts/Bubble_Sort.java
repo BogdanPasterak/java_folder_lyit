@@ -51,5 +51,27 @@ public class Bubble_Sort implements Sort {
         return answer;
     }
 
+    @Override
+    public void sortArrayTime(int[] arr) {
+        for (int pass = 0; pass < arr.length - 1; pass++) {
+            for (int i = 0; i < arr.length - 1; i++) {
+                if (arr[i] > arr[i + 1]) {
+                    Swap.swap(arr, i, i + 1);
+                }
+            }
+        }
+    }
+
+    @Override
+    public void sortListTime(ArrayList<Integer> list) {
+        for (int pass = 0; pass < list.size() - 1; pass++) {
+            for (int i = 0; i < list.size() - 1; i++) {
+                if (list.get(i) > list.get(i + 1)) {
+                    Swap.swapList(list, i, i + 1);
+                }
+            }
+        }
+    }
+
 }
 

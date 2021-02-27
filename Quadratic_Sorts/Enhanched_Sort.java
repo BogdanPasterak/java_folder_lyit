@@ -63,5 +63,41 @@ public class Enhanched_Sort implements Sort {
         return answer;
     }
 
+    @Override
+    public void sortArrayTime(int[] arr) {
+        boolean sorted;
+
+        for (int pass = 0; pass < arr.length - 1; pass++) {
+            sorted = true;
+            for (int i = 0; i < arr.length - 1 - pass; i++) {
+                if (arr[i] > arr[i + 1]) {
+                    Swap.swap(arr, i, i + 1);
+                    sorted = false;
+                }
+            }
+            if (sorted) {
+                break;
+            }
+        }
+    }
+
+    @Override
+    public void sortListTime(ArrayList<Integer> list) {
+        boolean sorted;
+
+        for (int pass = 0; pass < list.size() - 1; pass++) {
+            sorted = true;
+            for (int i = 0; i < list.size() - 1 - pass; i++) {
+                if (list.get(i) > list.get(i + 1)) {
+                    Swap.swapList(list, i, i + 1);
+                    sorted = false;
+                }
+            }
+            if (sorted) {
+                break;
+            }
+        }
+    }
+
 }
 

@@ -12,4 +12,8 @@ interface Sort {
     // ArrayList version
     public int[] sortList(ArrayList<Integer> list);
 
+    // time-measuring version
+    public void sortArrayTime(int [] arr);
+    public void sortListTime(ArrayList<Integer> list);
+
 }
