@@ -17,12 +17,12 @@ public class ReverseTest {
 
             // test reverse
             sentence.reverseString();
-            if (! reverse.equals(sentence.getText())) {
+            if (! reverse.equals(sentence.getReverseText())) {
                 test = false;
             }
             // test again, two reverse = origin
-            sentence.reverseString();
-            if (! start.equals(sentence.getText())) {
+            sentence.reverseString(sentence.getReverseText());
+            if (! sentence.getText().equals(sentence.getReverseText())) {
                 test = false;
             }
             // print result

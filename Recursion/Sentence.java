@@ -5,15 +5,21 @@ package Recursion;
 // Tests whether this sentence is a palindrome. 
 public class Sentence {
     private String text;
+    private String reverseText;
 
     // Constructor
     public Sentence(String text) {
         this.text = text;
+        reverseText = "";
     }
 
     // getters and setters
     public String getText() {
         return text;
+    }
+
+    public String getReverseText() {
+        return reverseText;
     }
 
     // Test palindrome
@@ -51,7 +57,21 @@ public class Sentence {
     public void reverseString() {
         char[] arrayText = text.toCharArray();
         recursiveReverseCharacters(arrayText, 0, text.length() - 1);
-        text = String.valueOf(arrayText);
+        reverseText = String.valueOf(arrayText);
+
+        System.out.println("Original string: " + text);
+        System.out.println("Reverse  string: " + reverseText);
+    }
+
+    // Overloading method 
+    // @param string to reverse
+    public void reverseString(String toReverse) {
+        char[] arrayText = toReverse.toCharArray();
+        recursiveReverseCharacters(arrayText, 0, text.length() - 1);
+        reverseText = String.valueOf(arrayText);
+
+        System.out.println("Original string: " + text);
+        System.out.println("Reverse  string: " + reverseText);
     }
 
     private void recursiveReverseCharacters(char[] arr, int front, int back) {
