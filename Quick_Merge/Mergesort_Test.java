@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class Mergesort_Test {
     public static void main(String[] args) {
 		// Get a random generated array
-		int numbers = 1000;
+		int numbers = 100000;
 		int[] randomArray = Auxiliary.getRandomArray(numbers);
 		int[] sortedArray = Auxiliary.getSortedArray(numbers);
 		int[] invertArray = Auxiliary.getInvertArray(numbers);
@@ -15,13 +15,19 @@ public class Mergesort_Test {
 
 		StopWatch time = new StopWatch(true);
 
+		// testArray = Arrays.copyOf(randomArray, randomArray.length);
+        // System.out.println(Auxiliary.getDisplayBigArray(testArray));
+        // Mergesort.sort(testArray);
+        // System.out.println(Auxiliary.getDisplayBigArray(testArray));
+
+
 		// Random array
 		avarge = 0;
 		for (int i = 0; i <= trials; i++) {
 			testArray = Arrays.copyOf(randomArray, randomArray.length);
 			time.reset();
 			time.start();
-			Quicksort.sort(testArray);
+			Mergesort.sort(testArray);
 			time.stop();
 			if (i > 0) {
 				avarge += time.getElapsedTime();
@@ -39,7 +45,7 @@ public class Mergesort_Test {
 			testArray = Arrays.copyOf(sortedArray, randomArray.length);
 			time.reset();
 			time.start();
-			Quicksort.sort(testArray);
+			Mergesort.sort(testArray);
 			time.stop();
 			if (i > 0) {
 				avarge += time.getElapsedTime();
@@ -57,7 +63,7 @@ public class Mergesort_Test {
 			testArray = Arrays.copyOf(invertArray, randomArray.length);
 			time.reset();
 			time.start();
-			Quicksort.sort(testArray);
+			Mergesort.sort(testArray);
 			time.stop();
 			if (i > 0) {
 				avarge += time.getElapsedTime();
