@@ -1,4 +1,4 @@
-package Linked_List;
+package Doubly_Linked_Lias;
 
 public class LinkedList_Test {
     public static void main(String[] args) {

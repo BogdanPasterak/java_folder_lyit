@@ -1,4 +1,4 @@
-package Linked_List;
+package Doubly_Linked_Lias;
 
 import java.util.NoSuchElementException;
 
