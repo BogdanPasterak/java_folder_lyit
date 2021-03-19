@@ -14,6 +14,20 @@ public interface ListIterator {
     Object next();
 
     /**
+     * Tests if there is an element before the iterator position.
+     * 
+     * @return true if there is an element before the iterator position
+     */
+    boolean hasPrevious();
+
+    /**
+     * Moves the iterator before the previous element.
+     * 
+     * @return the traversed element
+     */
+    Object previous();
+
+    /**
      * Tests if there is an element after the iterator position.
      * 
      * @return true if there is an element after the iterator position
